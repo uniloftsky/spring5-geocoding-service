@@ -1,6 +1,8 @@
 package com.uniloftsky.springframework.spring5geocodingservice.service;
 
 import com.uniloftsky.springframework.spring5geocodingservice.api.model.GeoRequestDTO;
+import com.uniloftsky.springframework.spring5geocodingservice.mapper.GeoRequestMapper;
+import com.uniloftsky.springframework.spring5geocodingservice.model.GeoRequest;
 import com.uniloftsky.springframework.spring5geocodingservice.repositories.GeoRequestRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -12,13 +14,16 @@ public class GeoRequestServiceImpl implements GeoRequestService {
 
     private final RestTemplate restTemplate;
     private final GeoRequestRepository geoRequestRepository;
-    private final String API_KEY = "df4533513d7045b59536aa891483a379";
+    private final String API_KEY;
     private final String API_URL;
+    private final GeoRequestMapper geoRequestMapper;
 
-    public GeoRequestServiceImpl(RestTemplate restTemplate, GeoRequestRepository geoRequestRepository, @Value("${api.url}") String API_URL) {
+    public GeoRequestServiceImpl(RestTemplate restTemplate, GeoRequestRepository geoRequestRepository, @Value("${api.url}") String API_URL, @Value("${api.key}") String API_KEY, GeoRequestMapper geoRequestMapper) {
         this.restTemplate = restTemplate;
         this.geoRequestRepository = geoRequestRepository;
         this.API_URL = API_URL;
+        this.API_KEY = API_KEY;
+        this.geoRequestMapper = geoRequestMapper;
     }
 
 //    @Override
@@ -36,14 +41,9 @@ public class GeoRequestServiceImpl implements GeoRequestService {
                 .fromUriString(API_URL)
                 .queryParam("q", address)
                 .queryParam("key", API_KEY);
-        return restTemplate.getForObject(uriBuilder.toUriString(), GeoRequestDTO.class);
-    }
-
-/*    @Override
-    public Set<GeoRequest> findAll() {
-        Set<GeoRequest> requests = new HashSet<>();
-        geoRequestRepository.findAll().iterator().forEachRemaining(requests::add);
-        return requests;
+        GeoRequestDTO result = restTemplate.getForObject(uriBuilder.toUriString(), GeoRequestDTO.class);
+        save(geoRequestMapper.DTOToGeoRequest(result));
+        return result;
     }
 
     @Override
@@ -54,5 +54,5 @@ public class GeoRequestServiceImpl implements GeoRequestService {
     @Override
     public void delete(GeoRequest obj) {
         geoRequestRepository.delete(obj);
-    }*/
+    }
 }

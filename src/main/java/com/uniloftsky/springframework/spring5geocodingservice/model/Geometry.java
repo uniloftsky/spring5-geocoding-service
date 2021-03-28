@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 @Getter
 @Setter
 @Entity
-public class Location extends BaseEntity {
+public class Geometry extends BaseEntity {
 
     private float lat;
     private float lng;
