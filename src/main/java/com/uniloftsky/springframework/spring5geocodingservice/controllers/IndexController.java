@@ -1,5 +1,6 @@
 package com.uniloftsky.springframework.spring5geocodingservice.controllers;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.uniloftsky.springframework.spring5geocodingservice.api.model.GeoRequestDTO;
 import com.uniloftsky.springframework.spring5geocodingservice.service.GeoRequestService;
 import org.springframework.http.HttpStatus;
@@ -17,7 +18,7 @@ public class IndexController {
 
     @GetMapping(params = "q")
     @ResponseStatus(HttpStatus.OK)
-    public GeoRequestDTO getRequestDetails(@RequestParam("q") String query) {
+    public GeoRequestDTO getRequestDetails(@RequestParam("q") String query) throws JsonProcessingException {
         return geoRequestService.getRequest(query);
     }
 
