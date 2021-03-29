@@ -43,6 +43,7 @@ public class GeoRequestServiceImpl implements GeoRequestService {
                 UriComponentsBuilder.fromUriString(API_URL)
                         .queryParam("key", API_KEY)
                         .queryParam("q", query);
+        //преобразовываем JSON в POJO
         ObjectMapper mapper = new ObjectMapper();
         GeoRequest geoRequest = mapper.readValue(getJsonString(uriBuilder.toUriString()), GeoRequest.class);
         List<ResultDTO> resultsDTO = new ArrayList<>();
@@ -54,6 +55,7 @@ public class GeoRequestServiceImpl implements GeoRequestService {
         return result;
     }
 
+    //Получение http-запроса вручную, на выходе получаем JSON
     private String getJsonString(String uri) {
         URL url = null;
         StringBuffer content = null;
