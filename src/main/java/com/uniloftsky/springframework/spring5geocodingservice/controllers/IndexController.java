@@ -1,7 +1,7 @@
 package com.uniloftsky.springframework.spring5geocodingservice.controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.uniloftsky.springframework.spring5geocodingservice.api.model.GeoRequestDTO;
+import com.uniloftsky.springframework.spring5geocodingservice.api.mappedmodel.GeoRequestDTO;
 import com.uniloftsky.springframework.spring5geocodingservice.service.GeoRequestService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

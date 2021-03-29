@@ -2,8 +2,8 @@ package com.uniloftsky.springframework.spring5geocodingservice.service;
 
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.uniloftsky.springframework.spring5geocodingservice.api.model.GeoRequestDTO;
-import com.uniloftsky.springframework.spring5geocodingservice.model.GeoRequest;
+import com.uniloftsky.springframework.spring5geocodingservice.api.mappedmodel.GeoRequestDTO;
+import com.uniloftsky.springframework.spring5geocodingservice.model.GeoRequestEntity;
 
 public interface GeoRequestService {
 
@@ -11,8 +11,8 @@ public interface GeoRequestService {
 
     void save(GeoRequestDTO dto);
 
-    GeoRequest save(GeoRequest obj);
+    GeoRequestEntity save(GeoRequestEntity obj);
 
-    void delete(GeoRequest obj);
+    void delete(GeoRequestEntity obj);
 
 }

@@ -8,12 +8,12 @@ import javax.persistence.Entity;
 @Getter
 @Setter
 @Entity
-public class GeoRequest extends BaseEntity {
+public class GeoRequestEntity extends BaseEntity {
 
-    public GeoRequest() {
+    public GeoRequestEntity() {
     }
 
-    public GeoRequest(String formatted, String location) {
+    public GeoRequestEntity(String formatted, String location) {
         this.formatted = formatted;
         this.location = location;
     }

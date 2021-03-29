@@ -19,7 +19,7 @@ import java.util.Map;
     "timestamp",
     "total_results"
 })
-public class GeoRequestDTO {
+public class GeoRequest {
 
     @JsonProperty("documentation")
     private String documentation;
