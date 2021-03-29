@@ -2,6 +2,7 @@ package com.uniloftsky.springframework.spring5geocodingservice.service;
 
 import com.uniloftsky.springframework.spring5geocodingservice.api.model.GeoRequestDTO;
 import com.uniloftsky.springframework.spring5geocodingservice.api.model.ResultDTO;
+import com.uniloftsky.springframework.spring5geocodingservice.exceptions.NotFoundException;
 import com.uniloftsky.springframework.spring5geocodingservice.model.GeoRequest;
 import com.uniloftsky.springframework.spring5geocodingservice.repositories.GeoRequestRepository;
 import org.springframework.beans.factory.annotation.Value;
@@ -31,16 +32,25 @@ public class GeoRequestServiceImpl implements GeoRequestService {
                 .queryParam("q", address)
                 .queryParam("key", API_KEY);
         GeoRequestDTO result = restTemplate.getForObject(uriBuilder.toUriString(), GeoRequestDTO.class);
-        for (ResultDTO v : result.getResultDTOS()) {
-            save(new GeoRequest(v.getFormatted(), v.getGeometryDTO().getLat() + ", " + v.getGeometryDTO().getLng()));
+        if (result == null) {
+            throw new NotFoundException("Result is null!");
         }
+        save(result);
         return result;
+    }
+
+    @Override
+    public void save(GeoRequestDTO dto) {
+        for (ResultDTO v : dto.getResultDTOS()) {
+            geoRequestRepository.save(new GeoRequest(v.getFormatted(), v.getGeometryDTO().getLat() + ", " + v.getGeometryDTO().getLng()));
+        }
     }
 
     @Override
     public GeoRequest save(GeoRequest obj) {
         return geoRequestRepository.save(obj);
     }
+
 
     @Override
     public void delete(GeoRequest obj) {

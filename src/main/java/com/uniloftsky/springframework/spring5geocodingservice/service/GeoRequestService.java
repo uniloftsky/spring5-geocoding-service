@@ -7,7 +7,8 @@ import com.uniloftsky.springframework.spring5geocodingservice.model.GeoRequest;
 public interface GeoRequestService {
 
     GeoRequestDTO getRequest(String address);
-    GeoRequest save(GeoRequest obj);
+    void save(GeoRequestDTO dto);
+    GeoRequest save( GeoRequest obj);
     void delete(GeoRequest obj);
 
 }
