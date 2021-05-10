@@ -1,5 +1,21 @@
 # spring5-geocoding-service
 Spring geocoding service with using OpenCage API<br>
+
+## Getting Started
+
+Geocoding Service API is a Spring Boot application built using Maven. You can build a jar file and run it from the command line (JDK 11 is required):
+
+```bash
+git clone https://github.com/uniloftsky/spring5-geocoding-service
+cd spring5-geocoding-service
+./mvnw package
+java -jar target/*.jar
+```
+
+You can then access api here: [http://localhost:8080/api/geocode?q=REQUEST](http://localhost:8080/api/geocode?q=REQUEST)
+<br>
+
+##Usage
 Input url:
 ```http request
 http://localhost:8080/api/geocode?q=REQUEST
