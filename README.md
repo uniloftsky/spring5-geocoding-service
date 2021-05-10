@@ -15,7 +15,7 @@ java -jar target/*.jar
 You can then access api here: [http://localhost:8080/api/geocode?q=REQUEST](http://localhost:8080/api/geocode?q=REQUEST)
 <br>
 
-##Usage
+## Usage
 Input url:
 ```http request
 http://localhost:8080/api/geocode?q=REQUEST
